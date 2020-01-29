@@ -34,7 +34,7 @@ const Show = sequelize.define(
             type: Sequelize.TIME,
             allowNull: false
         },
-        decription: {
+        description: {
             type: Sequelize.TEXT,
             allowNull: true
         },

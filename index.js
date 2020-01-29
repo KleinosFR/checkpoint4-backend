@@ -15,11 +15,13 @@ app.use(express.json());
 //Routes
 
 app.get("/", (req, res) => res.send("Hello world !"));
+app.use(express.static("public"));
 
 app.use("/artists", require("./routes/artists.routes"));
 app.use("/acts", require("./routes/acts.routes"));
-app.get("/shows", (req, res) => res.send("Hello from shows route"));
-app.get("/prices", (req, res) => res.send("Hello from prices route"));
+app.use("/shows", require("./routes/shows.routes"));
+app.use("/prices", require("./routes/prices.routes"));
+app.use("/mediaobject", require("./routes/mediaobjects.routes"));
 
 async function main() {
     try {
