@@ -14,7 +14,7 @@ const Act = sequelize.define(
             type: Sequelize.STRING,
             allowNull: false
         },
-        decription: {
+        description: {
             type: Sequelize.TEXT,
             allowNull: true
         },

@@ -2,32 +2,30 @@ const express = require("express");
 const router = express.Router();
 const sequelize = require("sequelize");
 
-const Artist = require("../sequelize/models/artists");
+const Act = require("../sequelize/models/acts");
 
 //GET ALL
 
 router.get("/", async (req, res) => {
     try {
-        const artists = await Artist.findAll();
-        res.status(200).json(artists);
+        const acts = await Act.findAll();
+        res.status(200).json(acts);
     } catch (err) {
         res.status(400).json(err);
     }
 });
-
-
 
 // GET ONE
 
 router.get("/:id", async (req, res) => {
     const { id } = req.params;
     try {
-        const artistById = Artist.findOne({
+        const actById = Act.findOne({
             where: {
                 uuid: id
             }
         });
-        res.status(200).json(artistById);
+        res.status(200).json(actById);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -37,9 +35,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const newArtist = req.body;
-        console.log(newArtist);
-        Artist.create(newArtist).then(artist => res.status(201).json(artist));
+        const newAct = req.body;
+        await Act.create(newAct).then(act => res.status(201).json(act));
     } catch (err) {
         res.status(400).json(err);
     }
@@ -50,7 +47,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", (req, res) => {
     try {
         const { id } = req.params;
-        Artist.destroy({ where: { uuid: id } });
+        Act.destroy({ where: { uuid: id } });
         res.sendStatus(200);
     } catch (err) {
         res.status(400).json(err);
@@ -61,11 +58,11 @@ router.delete("/:id", (req, res) => {
 
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const artistToUpdate = req.body;
+    const actToUpdate = req.body;
     try {
-        await Artist.update(artistToUpdate, { where: { uuid: id } });
-        const updatedArtist = await Artist.findOne({ where: { uuid: id } });
-        res.status(200).json(updatedArtist);
+        await Act.update(actToUpdate, { where: { uuid: id } });
+        const updatedAct = await Act.findOne({ where: { uuid: id } });
+        res.status(200).json(updatedAct);
     } catch (err) {
         res.status(400).json(err);
     }

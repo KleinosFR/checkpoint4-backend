@@ -17,7 +17,7 @@ app.use(express.json());
 app.get("/", (req, res) => res.send("Hello world !"));
 
 app.use("/artists", require("./routes/artists.routes"));
-app.get("/acts", (req, res) => res.send("Hello from acts route"));
+app.use("/acts", require("./routes/acts.routes"));
 app.get("/shows", (req, res) => res.send("Hello from shows route"));
 app.get("/prices", (req, res) => res.send("Hello from prices route"));
 
