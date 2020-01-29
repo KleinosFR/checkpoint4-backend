@@ -12,23 +12,29 @@ require("./sequelize/associations"); // If you have associations
 app.use(cors());
 app.use(express.json());
 
+//Routes
+
 app.get("/", (req, res) => res.send("Hello world !"));
+app.get("/artists", (req, res) => res.send("Hello from artists route"));
+app.get("/acts", (req, res) => res.send("Hello from acts route"));
+app.get("/shows", (req, res) => res.send("Hello from shows route"));
+app.get("/prices", (req, res) => res.send("Hello from prices route"));
 
 async function main() {
-  try {
-    await sequelize.sync(); // Sync Method will create Database using the config & models
-    console.log("Database connection sucessfull");
-    app.listen(PORT, err => {
-      if (err) throw new Error("Something bad happened...");
-      console.log(`Listening to port ${PORT}.`);
-    });
-  } catch (err) {
-    console.error("Unable to reach database", err);
-  }
+    try {
+        await sequelize.sync(); // Sync Method will create Database using the config & models
+        console.log("Database connection sucessfull");
+        app.listen(PORT, err => {
+            if (err) throw new Error("Something bad happened...");
+            console.log(`Listening to port ${PORT}.`);
+        });
+    } catch (err) {
+        console.error("Unable to reach database", err);
+    }
 }
 
 if (process.env.NODE_ENV !== "test") {
-  main();
+    main();
 }
 
 // If you want to add tests with Mocha & Chai

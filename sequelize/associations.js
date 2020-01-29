@@ -1,5 +1,10 @@
-const User = require("./models/users");
-const Company = require("./models/companies");
+const Act = require("./models/acts");
+const Artist = require("./models/artists");
+const Show = require("./models/shows");
+const Price = require("./models/prices");
 
-Company.hasMany(User, { foreignKey: { allowNull: false } });
-User.belongsTo(Company, { foreignKey: { allowNull: false }, onDelete: "CASCADE" });
+Artist.hasMany(Act, { foreignKey: { allowNull: false } });
+Act.belongsTo(Artist, { foreignKey: { allowNull: false } });
+
+Price.hasMany(Show, { foreignKey: { allowNull: false } });
+Show.belongsTo(Price, { foreignKey: { allowNull: false } });
