@@ -22,7 +22,11 @@ const Artist = sequelize.define(
             type: Sequelize.STRING,
             allowNull: false
         },
-        decription: {
+        description: {
+            type: Sequelize.TEXT,
+            allowNull: true
+        },
+        image: {
             type: Sequelize.TEXT,
             allowNull: true
         }
