@@ -7,7 +7,6 @@ const Artist = require("../sequelize/models/artists");
 //GET ALL
 
 router.get("/", async (req, res) => {
-    console.log("/artists");
     try {
         const artists = await Artist.findAll();
         res.status(200).json(artists);
@@ -60,15 +59,12 @@ router.delete("/:id", (req, res) => {
 
 // UPDATE ONE
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const { firstname, lastname, country, description } = req.body;
+    const artistToUpdate = req.body;
     try {
-        Artist.update(
-            { firstname, lastname, country, description },
-            { where: { uuid: id } }
-        );
-        const updatedArtist = Artist.findOne({ where: { uuid: id } });
+        await Artist.update(artistToUpdate, { where: { uuid: id } });
+        const updatedArtist = await Artist.findOne({ where: { uuid: id } });
         res.status(200).json(updatedArtist);
     } catch (err) {
         res.status(400).json(err);
