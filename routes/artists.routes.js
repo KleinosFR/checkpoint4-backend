@@ -57,3 +57,20 @@ router.delete("/:id", (req, res) => {
         res.status(400).json(err);
     }
 });
+
+// UPDATE ONE
+
+router.put("/:id", (req, res) => {
+    const { id } = req.params;
+    const { firstname, lastname, country, description } = req.body;
+    try {
+        Artist.update(
+            { firstname, lastname, country, description },
+            { where: { uuid: id } }
+        );
+        const updatedArtist = Artist.findOne({ where: { uuid: id } });
+        res.status(200).json(updatedArtist);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});

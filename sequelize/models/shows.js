@@ -37,6 +37,10 @@ const Show = sequelize.define(
         decription: {
             type: Sequelize.TEXT,
             allowNull: true
+        },
+        image: {
+            type: Sequelize.TEXT,
+            allowNull: true
         }
     },
     {}
