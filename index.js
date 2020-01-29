@@ -22,6 +22,8 @@ app.use("/acts", require("./routes/acts.routes"));
 app.use("/shows", require("./routes/shows.routes"));
 app.use("/prices", require("./routes/prices.routes"));
 app.use("/mediaobject", require("./routes/mediaobjects.routes"));
+app.use("/pictures", require("./routes/pictures.routes"));
+app.use("/login_check", require("./routes/login.routes"));
 
 async function main() {
     try {
