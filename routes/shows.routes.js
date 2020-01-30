@@ -5,11 +5,14 @@ const sequelize = require("sequelize");
 const Show = require("../sequelize/models/shows");
 const Price = require("../sequelize/models/prices");
 
-//GET ALL
+//GET ALL SORTED BY DATE THEN TIME
 
 router.get("/", async (req, res) => {
     try {
-        const shows = await Show.findAll({ include: [{ model: Price }] });
+        const shows = await Show.findAll({
+            include: [{ model: Price }],
+            order: [["date", "ASC"], ["time", "ASC"]]
+        });
         res.status(200).json(shows);
     } catch (err) {
         res.status(400).json(err);
